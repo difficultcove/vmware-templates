@@ -58,7 +58,7 @@ variable "allow_selfsigned_cert" {
 
 ############### Optinal settings in provider ##########
 provider "vsphere" {
-    version = "~> 1.1"
+    version = "1.2.0"
     allow_unverified_ssl = "${var.allow_selfsigned_cert}"
 }
 
@@ -108,8 +108,7 @@ resource "vsphere_virtual_machine" "vm_1" {
   disk {
     name = "${var.name}.vmdk"
     size = 40
-    eagerly_scrub    = "${data.vsphere_virtual_machine.template.disks.0.eagerly_scrub}"
-    thin_provisioned = "${data.vsphere_virtual_machine.template.disks.0.thin_provisioned}"
+    thin_provisioned = true
   }
 
   clone {
