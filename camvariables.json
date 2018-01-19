@@ -80,7 +80,7 @@
     {
       "name": "rootdisksize",
       "description": "Root disk size in GBs",
-      "default": 40,
+      "default": "40",
       "type": "string",
       "required": true,
       "secured": false,

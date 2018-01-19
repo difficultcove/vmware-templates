@@ -113,18 +113,18 @@ resource "vsphere_virtual_machine" "vm_1" {
   clone {
     template_uuid = "${data.vsphere_virtual_machine.template.id}"
 
-    customize {
-      linux_options {
-        host_name = "${var.name}"
-        domain    = "test.internal"
-      }
+#    customize {
+#      linux_options {
+#        host_name = "${var.name}"
+#        domain    = "test.internal"
+#      }
+#
+#      network_interface {
+#        ipv4_address = "${var.ipv4_address}"
+#        ipv4_netmask = "${var.ipv4_prefix_length}"
+#      }
 
-      network_interface {
-        ipv4_address = "${var.ipv4_address}"
-        ipv4_netmask = "${var.ipv4_prefix_length}"
-      }
-
-      ipv4_gateway = "${var.ipv4_gateway}"
-    }
+#      ipv4_gateway = "${var.ipv4_gateway}"
+#    }
   }
 }
