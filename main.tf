@@ -18,6 +18,11 @@ variable "memory" {
 	default = 1024
 }
 
+variable "rootdisksize" {
+	description = "Root Disk Size"
+	default = 16
+}
+
 variable "cluster" {
 	description = "Target vSphere Cluster to host the Virtual Machine"
 }
@@ -100,7 +105,7 @@ resource "vsphere_virtual_machine" "vm_1" {
 
   disk {
     name = "${var.name}.vmdk"
-    size = "30"
+    size = "${var.rootdisksize}"
     eagerly_scrub    = "${data.vsphere_virtual_machine.template.disks.0.eagerly_scrub}"
     thin_provisioned = "${data.vsphere_virtual_machine.template.disks.0.thin_provisioned}"
   }
