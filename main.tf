@@ -18,11 +18,6 @@ variable "memory" {
 	default = 1024
 }
 
-variable "rootdisksize" {
-	description = "Root disk size in GBs"
-	default = 40
-}
-
 variable "cluster" {
 	description = "Target vSphere Cluster to host the Virtual Machine"
 }
@@ -58,7 +53,7 @@ variable "allow_selfsigned_cert" {
 
 ############### Optinal settings in provider ##########
 provider "vsphere" {
-    version = "1.2.0"
+    version = "~> 1.1"
     allow_unverified_ssl = "${var.allow_selfsigned_cert}"
 }
 
@@ -85,8 +80,6 @@ data "vsphere_network" "network" {
   name          = "${var.network_label}"
   datacenter_id = "${data.vsphere_datacenter.datacenter.id}"
 }
-
-
 ################## Resources ###############################
 
 #
@@ -107,8 +100,9 @@ resource "vsphere_virtual_machine" "vm_1" {
 
   disk {
     name = "${var.name}.vmdk"
-    size = 40
-    thin_provisioned = true
+    size = 30
+    eagerly_scrub    = "${data.vsphere_virtual_machine.template.disks.0.eagerly_scrub}"
+    thin_provisioned = "${data.vsphere_virtual_machine.template.disks.0.thin_provisioned}"
   }
 
   clone {
