@@ -14,7 +14,7 @@
     {
       "name": "cluster",
       "description": "Target vSphere Cluster to host the Virtual Machine",
-      "default": "Shared",
+      "default": "underground",
       "type": "string",
       "required": true,
       "secured": false,
@@ -25,7 +25,7 @@
     {
       "name": "datacenter",
       "description": "Target vSphere datacenter for Virtual Machine creation",
-      "default": "Rack-8283_1000167",
+      "default": "isstlab",
       "type": "string",
       "required": true,
       "secured": false,
@@ -36,7 +36,7 @@
     {
       "name": "ipv4_address",
       "description": "IPv4 address for vNIC configuration",
-      "default":"9.37.194.182",
+      "default":"172.24.19.222",
       "type": "string",
       "required": true,
       "secured": false,
@@ -47,7 +47,7 @@
     {
       "name": "ipv4_gateway",
       "description": "IPv4 gateway for vNIC configuration",
-      "default":"9.37.194.1",
+      "default":"172.24.19.1",
       "type": "string",
       "required": true,
       "secured": false,
@@ -78,8 +78,19 @@
       "immutable": false
     },
     {
+      "name": "rootdisksize",
+      "description": "Root disk size in GBs",
+      "default": 40,
+      "type": "string",
+      "required": true,
+      "secured": false,
+      "label": "memory",
+      "hidden": false,
+      "immutable": false
+    },
+    {
       "name": "name",
-      "default": "demovmware",
+      "default": "tf-rd-test",
       "description": "Name of the Virtual Machine",
       "type": "string",
       "required": true,
@@ -91,7 +102,7 @@
     {
       "name": "network_label",
       "description": "vSphere Port Group or Network label for Virtual Machine's vNIC",
-      "default": "840",
+      "default": "VLAB_MGMT_0019",
       "type": "string",
       "required": true,
       "secured": false,
@@ -102,7 +113,7 @@
     {
       "name": "storage",
       "description": "Data store or storage cluster name for target VMs disks",
-      "default": "p_598752a3-396b-4c9e-868d-1cd090350d83",
+      "default": "cluster01/ESXX6-volume-01",
       "type": "string",
       "required": true,
       "secured": false,
@@ -123,7 +134,7 @@
     },
     {
       "name": "vm_template",
-      "default": "CAM-ManageToTemplate/Ubuntu-Template",
+      "default": "vt-ubuntu-svr-1604",
       "description": "Source VM or Template label for cloning",
       "type": "string",
       "required": true,

@@ -18,12 +18,17 @@ variable "memory" {
 	default = 1024
 }
 
+variable "rootdisksize" {
+	description = "Root disk size in GBs"
+	default = 40
+}
+
 variable "cluster" {
 	description = "Target vSphere Cluster to host the Virtual Machine"
 }
 
 variable "network_label" {
-	description = "vSphere Port Group or Network label for Virtual Machine's vNIC" 
+	description = "vSphere Port Group or Network label for Virtual Machine's vNIC"
 }
 
 variable "ipv4_address" {
@@ -56,7 +61,7 @@ provider "vsphere" {
     version = "~> 1.1"
     allow_unverified_ssl = "${var.allow_selfsigned_cert}"
 }
- 
+
 data "vsphere_datacenter" "datacenter" {
   name = "${var.datacenter}"
 }
@@ -83,13 +88,13 @@ data "vsphere_network" "network" {
 ################## Resources ###############################
 
 #
-# Create VM with single vnic on a network label by cloning 
+# Create VM with single vnic on a network label by cloning
 #
 resource "vsphere_virtual_machine" "vm_1" {
   name   = "${var.name}"
   resource_pool_id = "${data.vsphere_resource_pool.pool.id}"
   datastore_id     = "${data.vsphere_datastore.datastore.id}"
-  
+
   num_cpus   = "${var.vcpu}"
   memory = "${var.memory}"
   guest_id = "${data.vsphere_virtual_machine.template.guest_id}"
@@ -100,7 +105,7 @@ resource "vsphere_virtual_machine" "vm_1" {
 
   disk {
     name = "${var.name}.vmdk"
-    size = "${data.vsphere_virtual_machine.template.disks.0.size}"
+    size = "${var.rootdisksize}"
     eagerly_scrub    = "${data.vsphere_virtual_machine.template.disks.0.eagerly_scrub}"
     thin_provisioned = "${data.vsphere_virtual_machine.template.disks.0.thin_provisioned}"
   }
