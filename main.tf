@@ -82,7 +82,7 @@ data "vsphere_resource_pool" "pool" {
 }
 
 data "vsphere_network" "network" {
-  name          = "840"
+  name          = "${var.network_label}"
   datacenter_id = "${data.vsphere_datacenter.datacenter.id}"
 }
 ################## Resources ###############################

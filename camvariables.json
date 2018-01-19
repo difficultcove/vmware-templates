@@ -84,7 +84,7 @@
       "type": "string",
       "required": true,
       "secured": false,
-      "label": "memory",
+      "label": "rootdisksize",
       "hidden": false,
       "immutable": false
     },
@@ -113,7 +113,7 @@
     {
       "name": "storage",
       "description": "Data store or storage cluster name for target VMs disks",
-      "default": "cluster01/ESXX6-volume-01",
+      "default": "cluster01/ESX6-volume-01",
       "type": "string",
       "required": true,
       "secured": false,
