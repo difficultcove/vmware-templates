@@ -85,6 +85,8 @@ data "vsphere_network" "network" {
   name          = "${var.network_label}"
   datacenter_id = "${data.vsphere_datacenter.datacenter.id}"
 }
+
+
 ################## Resources ###############################
 
 #
@@ -105,7 +107,7 @@ resource "vsphere_virtual_machine" "vm_1" {
 
   disk {
     name = "${var.name}.vmdk"
-    size = "${data.vsphere_virtual_machine.template.disks.0.size}"
+    size = 40
     eagerly_scrub    = "${data.vsphere_virtual_machine.template.disks.0.eagerly_scrub}"
     thin_provisioned = "${data.vsphere_virtual_machine.template.disks.0.thin_provisioned}"
   }
@@ -113,18 +115,18 @@ resource "vsphere_virtual_machine" "vm_1" {
   clone {
     template_uuid = "${data.vsphere_virtual_machine.template.id}"
 
-#    customize {
-#      linux_options {
-#        host_name = "${var.name}"
-#        domain    = "test.internal"
-#      }
-#
-#      network_interface {
-#        ipv4_address = "${var.ipv4_address}"
-#        ipv4_netmask = "${var.ipv4_prefix_length}"
-#      }
+    customize {
+      linux_options {
+        host_name = "${var.name}"
+        domain    = "test.internal"
+      }
 
-#      ipv4_gateway = "${var.ipv4_gateway}"
-#    }
+      network_interface {
+        ipv4_address = "${var.ipv4_address}"
+        ipv4_netmask = "${var.ipv4_prefix_length}"
+      }
+
+      ipv4_gateway = "${var.ipv4_gateway}"
+    }
   }
 }

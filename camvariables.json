@@ -154,6 +154,16 @@
       "label": "IPV4 address",
       "hidden": false,
       "immutable": false
+    },
+    {
+      "name": "disk size",
+      "description": "root disk size",
+      "type": "string",
+      "required": false,
+      "secured": false,
+      "label": "root disk size",
+      "hidden": false,
+      "immutable": false
     }
   ]
 }
