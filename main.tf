@@ -118,6 +118,9 @@ resource "vsphere_virtual_machine" "vm_1" {
         host_name = "${var.name}"
         domain    = "test.internal"
       }
+			windows_options {
+				host_name = "${var.name}"
+			}
 
       network_interface {
         ipv4_address = "${var.ipv4_address}"
