@@ -1,8 +1,8 @@
 {
-  "name": "Single Virtual Machine",
-  "description": "Create Virtual Machine with single vnic",
+  "name": "Single VM Fleible Root Disk",
+  "description": "Create Virtual Machine with single vnic anda  flexible sized root disk",
   "type": "prebuilt",
-  "version": "1.0.0.0",
+  "version": "1.2.0.0",
   "manifest": {
     "template_type": "Terraform",
     "template_format": "HCL",

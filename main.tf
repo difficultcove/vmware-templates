@@ -119,7 +119,7 @@ resource "vsphere_virtual_machine" "vm_1" {
 #        domain    = "test.internal"
 #      }
 			windows_options {
-				host_name = "${var.name}"
+				computer_name = "${var.name}"
 			}
 
       network_interface {
