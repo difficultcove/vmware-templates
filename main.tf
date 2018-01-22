@@ -114,13 +114,19 @@ resource "vsphere_virtual_machine" "vm_1" {
     template_uuid = "${data.vsphere_virtual_machine.template.id}"
 
     customize {
-#      linux_options {
-#        host_name = "${var.name}"
-#        domain    = "test.internal"
-#      }
-			windows_options {
-				computer_name = "${var.name}"
-			}
+      linux_options {
+        host_name = "${var.name}"
+        domain    = "test.internal"
+      }
+#		windows_options {
+#				computer_name = "${var.name}"
+#				admin_password = "REDACTED"
+#				join_domain = "domain.local"
+#				domain_admin_user = "${var.domainjoin_user}"
+#				domain_admin_password = "${var.domainjoin_password}"
+#				time_zone = "035"
+#				organization_name = "Test"
+#		}
 
       network_interface {
         ipv4_address = "${var.ipv4_address}"
